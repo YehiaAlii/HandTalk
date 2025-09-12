@@ -5,8 +5,9 @@ This directory requires ASL pose data files that are too large for GitHub (2000+
 ## Download Instructions
 
 1. **Download the ASL pose data from Google Drive:**
+```
 https://drive.google.com/drive/folders/17oySRdzPl-7eX1-RqZubANVpG-uqnRtY?usp=drive_link
-
+```
 
 2. **Extract the contents to this folder:**
 HandTalk/gloss2pose/asl/
