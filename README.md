@@ -281,3 +281,104 @@ POST /save/v2t
   "return_audio": true
 }
 ```
+
+## Text-to-Sign (T2V) APIs
+
+### Convert Text to Sign Language
+```http
+GET /gloss2pose?gloss=hello world&user_id=123
+```
+
+**Response:**
+```json
+{
+  "img": "base64_encoded_gif_data",
+  "words": ["HELLO", "WORLD"],
+  "processing_time": 2.1,
+  "word_count": 2,
+  "original_text": "hello world",
+  "isSaved": false,
+  "translation_id": null
+}
+```
+
+### Save T2V Translation
+```http
+POST /t2v/save
+```
+
+**Request:**
+```json
+{
+  "user_id": 123,
+  "text": "hello world",
+  "generate_audio": true
+}
+```
+
+**Response:**
+```json
+{
+  "translation_id": 1,
+  "message": "Translation saved successfully",
+  "has_thumbnail": true,
+  "audio_url": "{public_url}/user/123/t2v/audio/1",
+  "saved_at": "2024-01-15 10:30:00"
+}
+```
+
+### Get All T2V Translations
+```http
+GET /retrieve_translations?user_id=123
+```
+
+### Delete T2V Translation
+```http
+DELETE /delete_translations/{translation_id}?user_id=123
+```
+
+## User Data Management APIs
+
+### Recent Items (Last 3)
+```http
+GET /user/{user_id}/v2t/recent-translations       # Recent V2T translations
+GET /user/{user_id}/t2v/recent-translations       # Recent T2V translations
+GET /user/{user_id}/recent-translations/all       # Combined recent from both systems
+
+GET /user/{user_id}/v2t/recent-saves              # Recent V2T saves
+GET /user/{user_id}/t2v/recent-saves              # Recent T2V saves  
+GET /user/{user_id}/recent-saves/all              # Combined recent saves
+```
+
+### All Saved Translations
+```http
+GET /user/{user_id}/translations/with-text        # V2T text-based saves
+GET /user/{user_id}/translations/with-audio       # V2T audio-enabled saves
+GET /user/{user_id}/saved/all                     # All saved (V2T + T2V combined)
+```
+
+**Response Example:**
+```json
+{
+  "translations": [
+    {
+      "id": "123",
+      "text": "Hello world",
+      "timestamp": "2024-01-15T10:30:00Z",
+      "filename": "my_video.mp4",
+      "source_type": "video-to-text|text-to-sign",
+      "has_audio": true,
+      "video_url": "{public_url}/user/123/translations/video/123",
+      "audio_url": "{public_url}/user/123/translations/audio/123",
+      "thumbnail_url": "{public_url}/user/123/translations/thumbnail/123"
+    }
+  ],
+  "count": 1
+}
+```
+
+### Delete Saved Translations
+```http
+DELETE /user/{user_id}/translations/with-text/{translation_id}    # Delete V2T text
+DELETE /user/{user_id}/translations/with-audio/{translation_id}   # Delete V2T audio
+```
