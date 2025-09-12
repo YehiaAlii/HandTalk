@@ -50,6 +50,7 @@ This system addresses the critical need for accessible communication tools in th
 - **Real-time synchronization**: Live updates across all connected devices
 
 **Professional Desktop Application**: [HandTalk-Bridge-Desktop](https://github.com/YehiaAlii/HandTalk-Bridge-Desktop)
+
 *Complete desktop interface for institutional deployments with recording capabilities and real-time communication*
 
 ## Prerequisites & Setup
