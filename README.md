@@ -41,8 +41,8 @@ This system addresses the critical need for accessible communication tools in th
     - Results in official_openasl_pose_only_slt.pth file
 
 #### Option B: Obtain Pre-trained Weights
-    - Get the trained model from someone who has already trained the model
-    - Place the Model File:
+   - Get the trained model from someone who has already trained the model
+   - Place the Model File:
     
     ```
     HandTalk/out/official_checkpoints/official_openasl_pose_only_slt.pth
