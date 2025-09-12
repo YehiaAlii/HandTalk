@@ -187,3 +187,97 @@ print(f"🎯 Your HandTalk system is now live!")
 ```
 
 Your HandTalk system is now running and accessible at the public URL!
+
+
+## API Documentation
+*Complete API reference for mobile and web application integration*
+
+### Base URL
+
+```
+{public_url} # Your ngrok URL from Colab setup
+```
+
+
+### Real-time Communication
+
+#### WebSocket Connection
+**Multi-device real-time communication system**
+```javascript
+// Connect with device identification
+const ws = new WebSocket(`ws://{public_url}/ws/{device_type}/{device_id}`);
+// device_type: "mobile" | "desktop" | "web"
+// device_id: unique identifier for your device
+```
+
+### Upload Video for Translation
+**Real-time video-to-text translation with WebSocket progress updates**
+
+```http
+POST /upload/
+```
+
+**Request:**
+```bash
+curl -X POST "{public_url}/upload/" \
+  -F "file=@sign_video.mp4" \
+  -F "client_id=unique_device_id" \
+  -F "user_id=123" \
+  -F "return_audio=true"
+```
+
+**Response:**
+```json
+{
+  "translation_id": "1234567890",
+  "message": "Processing started"
+}
+```
+
+**WebSocket Progress Updates:**
+```json
+{
+  "type": "progress",
+  "translation_id": "1234567890",
+  "status": "preprocessing|inference|completed|error",
+  "message": "Running sign language translation model...",
+  "progress": 50,
+  "text": "Hello world"
+}
+```
+
+### Cross-Device Video Upload
+```http
+POST /upload-device/
+```
+**Automatically broadcasts translation results to all connected mobile devices**
+
+### Get Translation Result
+```http
+GET /result/{translation_id}?return_audio=true
+```
+
+**Response:**
+```json
+{
+  "translation_id": "1234567890",
+  "text": "Hello world",
+  "user_id": "123",
+  "original_filename": "my_video.mp4",
+  "audio_url": "{public_url}/audio/temp/1234567890"
+}
+```
+
+### Save V2T Translation
+```http
+POST /save/v2t
+```
+
+**Request:**
+```json
+{
+  "translation_id": "1234567890",
+  "user_id": 123,
+  "return_audio": true
+}
+```
