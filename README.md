@@ -43,10 +43,9 @@ This system addresses the critical need for accessible communication tools in th
 #### Option B: Obtain Pre-trained Weights
    - Get the trained model from someone who has already trained the model
    - Place the Model File:
-    
-    ```
-    HandTalk/out/official_checkpoints/official_openasl_pose_only_slt.pth
-    ```
+```
+HandTalk/out/official_checkpoints/official_openasl_pose_only_slt.pth
+```
     
 ### Step 2: Get Pose Data for Text-to-Sign*
 **REQUIRED for text-to-sign conversion feature**
