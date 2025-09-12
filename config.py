@@ -1,0 +1,1 @@
+mt5_path = "./pretrained_weight/mt5-base"
