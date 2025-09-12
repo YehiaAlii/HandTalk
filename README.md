@@ -1,17 +1,20 @@
 # HandTalk 🤟
-*Sign Language Translation System - Graduation Project*
+*Advanced Sign Language Translation System - Real-time Bidirectional Communication*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.68+-green.svg)](https://fastapi.tiangolo.com)
+[![WebSocket](https://img.shields.io/badge/WebSocket-Real--time-blue.svg)](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
 
 ## Project Overview
 
-HandTalk is a comprehensive sign language translation system that bridges the communication gap between deaf/hard-of-hearing individuals and hearing individuals. This graduation project implements a real-time, bidirectional translation system using state-of-the-art deep learning techniques.
+HandTalk is a comprehensive sign language translation system that bridges the communication gap between deaf/hard-of-hearing individuals and hearing individuals. This graduation project implements a real-time, bidirectional translation system using state-of-the-art deep learning techniques with full mobile and web application support.
 
 ### What HandTalk Does:
 - **Video-to-Text**: Converts American Sign Language (ASL) videos into English text
 - **Text-to-Sign**: Generates sign language animations from English text input
 - **Real-time Processing**: Provides instant translations through a web/mobile interface
+- **Cross-Device Bridge**: Mobile and desktop devices communication
 - **Multi-platform**: Works on web browsers, mobile devices, and desktop applications
 - **Cloud-ready**: Runs entirely in Google Colab with free GPU access
 
@@ -20,10 +23,34 @@ HandTalk is a comprehensive sign language translation system that bridges the co
 - **Uni-Sign Architecture**: Implements the latest sign language understanding model
 - **WebSocket Communication**: Real-time bidirectional communication between users
 - **RESTful API**: Complete backend system with multiple endpoints for different use cases
+- **GPU Acceleration**: CUDA support with automatic CPU fallback
 
 ### Project Impact:
 This system addresses the critical need for accessible communication tools in the deaf, hard-of-hearing community, and who rely on sign language as their primary means of communication.
 
+## Platform Compatibility
+
+### Mobile Applications
+- **Real-time WebSocket communication** for instant translation updates
+- **Cross-device synchronization** between mobile and desktop devices
+- **Audio playback** for translated text with text-to-speech
+- **Thumbnail previews** for quick video identification
+- **Native file upload** with drag-and-drop support
+
+### Web Applications  
+- **RESTful API** with 15+ endpoints for complete functionality
+- **WebSocket support** for real-time features and live updates
+- **File upload with progress tracking** and visual feedback
+- **Media endpoints** for video/audio/image delivery
+- **Search functionality** with context highlighting
+
+### Cross-Device Bridge System
+- **Desktop → Mobile**: Video processing results automatically sent to mobile devices
+- **Mobile → Desktop**: Text-to-sign requests generate animations on desktop
+- **Real-time synchronization**: Live updates across all connected devices
+
+**Professional Desktop Application**: [HandTalk-Bridge-Desktop](https://github.com/YehiaAlii/HandTalk-Bridge-Desktop)
+*Complete desktop interface for institutional deployments with recording capabilities and real-time communication*
 
 ## Prerequisites & Setup
 
