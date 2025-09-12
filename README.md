@@ -382,3 +382,102 @@ GET /user/{user_id}/saved/all                     # All saved (V2T + T2V combine
 DELETE /user/{user_id}/translations/with-text/{translation_id}    # Delete V2T text
 DELETE /user/{user_id}/translations/with-audio/{translation_id}   # Delete V2T audio
 ```
+
+## Search APIs
+
+```http
+GET /user/{user_id}/search?query=hello            # Search all translations
+GET /user/{user_id}/search/v2t?query=hello        # Search V2T translations only
+GET /user/{user_id}/search/t2v?query=hello        # Search T2V translations only
+```
+
+**Response with context highlighting:**
+```json
+{
+  "results": [
+    {
+      "id": "123",
+      "text": "Hello world, how are you?",
+      "match_context": "...world, <highlight>hello</highlight> there...",
+      "source_type": "video-to-text|text-to-sign",
+      "type": "text|audio|animation",
+      "has_audio": true,
+      "has_thumbnail": true,
+      "video_url": "{public_url}/user/123/translations/video/123",
+      "audio_url": "{public_url}/user/123/translations/audio/123",
+      "thumbnail_url": "{public_url}/user/123/translations/thumbnail/123",
+      "timestamp": "2024-01-15T10:30:00Z"
+    }
+  ],
+  "total": 1,
+  "query": "hello",
+  "sources": {
+    "video_to_text": 1,
+    "text_to_sign": 0
+  }
+}
+```
+
+**Search Features:**
+- **Case-insensitive** search across all saved translations
+- **Context highlighting** with `<highlight>` tags for easy UI integration  
+- **Multi-source** search across both V2T and T2V systems
+- **Result ranking** by timestamp (newest first)
+
+## Media File APIs
+
+### Direct Media Access
+```http
+# V2T Media Files
+GET /user/{user_id}/translations/video/{translation_id}           # Video files
+GET /user/{user_id}/translations/audio/{translation_id}           # Audio files
+GET /user/{user_id}/translations/thumbnail/{translation_id}       # Video thumbnails
+
+# T2V Media Files  
+GET /user/{user_id}/t2v/thumbnail/{translation_id}               # T2V thumbnails
+GET /user/{user_id}/t2v/audio/{translation_id}                   # T2V audio files
+
+# Recent Media Files
+GET /user/{user_id}/recent-translations/v2t/thumbnail/{thumbnail_id}    # Recent V2T thumbnails
+GET /user/{user_id}/recent-translations/t2v/thumbnail/{thumbnail_id}    # Recent T2V thumbnails
+GET /user/{user_id}/recent-translations/audio/{translation_id}          # Recent audio files
+```
+
+**Media Response Headers:**
+```http
+Content-Type: video/mp4                    # For video files
+Content-Type: audio/mpeg                   # For audio files  
+Content-Type: image/jpeg                   # For thumbnail files
+Content-Disposition: inline; filename="123.mp4"
+```
+
+
+**Media Features:**
+- **Direct streaming** - Files served with proper headers for browser playback
+- **Thumbnail previews** - Auto-generated from videos (frame 5) and GIFs (middle frame)
+- **Audio generation** - Text-to-speech MP3 files with high quality
+
+# Bridge Communication APIs
+
+### Cross-Device Conversation History
+```http
+GET /bridge-conversation                    # Full conversation history
+GET /bridge-conversation/recent            # Last 2 messages only
+```
+
+**Response:**
+```json
+{
+  "title": "Sign Language Bridge Conversation",
+  "messages": [
+    {
+      "role": "user|assistant",
+      "content": "Hello world",
+      "timestamp": "2024-01-15T10:30:00Z",
+      "type": "text_to_sign|video_to_text"
+    }
+  ],
+  "created_at": "2024-01-15T10:00:00Z",
+  "updated_at": "2024-01-15T10:30:00Z"
+}
+```
