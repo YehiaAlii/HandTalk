@@ -488,3 +488,7 @@ GET /bridge-conversation/recent            # Last 2 messages only
 
 ### Mobile
 [Google Drive Folder](https://drive.google.com/drive/folders/1fy5qdH6RzTi45vZkAcQ2jAJBZV6MZDQv?usp=sharing)
+
+### Master
+[Google Drive Folder]([https://drive.google.com/drive/folders/1fy5qdH6RzTi45vZkAcQ2jAJBZV6MZDQv?usp=sharing](https://drive.google.com/drive/folders/1VNzLq8PQMqR5I3KvaCQKt3SpIoheXv3m?usp=drive_link))
+
